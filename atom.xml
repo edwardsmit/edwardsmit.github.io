@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   
   <title><![CDATA[Blognote]]></title>
-  <subtitle><![CDATA[Edward&#039;s Unicode Sequences]]></subtitle>
+  <subtitle><![CDATA[Edward's Unicode Sequences]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.edwardsmit.com//"/>
   <updated>2015-07-16T07:23:46.000Z</updated>
