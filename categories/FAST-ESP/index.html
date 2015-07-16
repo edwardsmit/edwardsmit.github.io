@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: FAST ESP | Blognote</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blognote">
+<meta property="og:url" content="http://blog.edwardsmit.com/categories/FAST-ESP/index.html">
+<meta property="og:site_name" content="Blognote">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Blognote">
+<meta name="twitter:description">
+  
+    <link rel="alternative" href="/atom.xml" title="Blognote" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blognote</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Edward&amp;#039;s Unicode Sequences</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.edwardsmit.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-fast-esp-apiqueue-too-full-for-operation-of-size" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/02/03/fast-esp-apiqueue-too-full-for-operation-of-size/" class="article-date">
+  <time datetime="2011-02-03T12:03:15.000Z" itemprop="datePublished">03 02 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FAST-ESP/">FAST ESP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/02/03/fast-esp-apiqueue-too-full-for-operation-of-size/">FAST ESP Apiqueue too full for operation of size</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>In FAST ESP 5.3 when trying to index large files, you might run in to the problem that the indexer API-queue<br>can’t handle the document because of its size.<br>By default the indexer API Queue is set at 52428800 bytes (50Mb). Mind that you only re-size this<br>API Queue when a <strong>single</strong> document is larger than the 50Mb, otherwise you can try to limit the size<br>of the submitted batch by whichever connector you are using.</p>
+<p>If you are sure you need to enlarge the indexer API Queue do the following:</p>
+<ol>
+<li>On the admin-server edit the file $FASTSEARCH\etc\config_data\RTSearch\webcluster\rtsearchrc.xml</li>
+<li>Add the attribute maxQueueSize=”<strong>78643200</strong>“ to set the indexer API Queue Size to 75Mb, adjust to<br>an appropriate value for your environment.</li>
+<li>Do a <strong>nctrl reloadcfg</strong> on the admin-server</li>
+<li>Do a restart of all indexer processes (either via <strong>nctrl</strong> or the System Management tab in the Admin-UI)</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.edwardsmit.com/2011/02/03/fast-esp-apiqueue-too-full-for-operation-of-size/" data-id="cic5v6xfv001pwg1oglko82sy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-free-microsoft-fast-search-server-2010-for-sharepoint" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/11/10/free-microsoft-fast-search-server-2010-for-sharepoint/" class="article-date">
+  <time datetime="2010-11-10T10:04:04.000Z" itemprop="datePublished">10 11 2010</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FAST-ESP/">FAST ESP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/11/10/free-microsoft-fast-search-server-2010-for-sharepoint/">Free Microsoft FAST Search Server 2010 for SharePoint Training</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Microsoft has posted a bunch of videos and training tools on SharePoint 2010 Enterprise Search. <a href="http://msdn.microsoft.com/en-us/sharepoint/ff960975.aspx" target="_blank" rel="external">Have a look yourself</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.edwardsmit.com/2010/11/10/free-microsoft-fast-search-server-2010-for-sharepoint/" data-id="cic5v6xft001mwg1os7agvyz4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-fast-esp-5-3-disable-daylight-savings-in-a-timezone-without-daylight-savings" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/04/27/fast-esp-5-3-disable-daylight-savings-in-a-timezone-without-daylight-savings/" class="article-date">
+  <time datetime="2010-04-27T12:24:25.000Z" itemprop="datePublished">27 04 2010</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FAST-ESP/">FAST ESP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/04/27/fast-esp-5-3-disable-daylight-savings-in-a-timezone-without-daylight-savings/">FAST ESP 5.3 - Disable daylight savings in a timezone without daylight savings</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I’m installing a FAST ESP 5.3 sp3 setup in India. No I’m not there physically, via a remote desktop. As you might know, FAST doesn’t like Daylight Savings Time Adjustment. The Indian Timezone used by the server does not obey Daylight Savings, but the FAST ESP 5.3 sp3 installer still blocked on it’s check of Daylight Savings. To disable this correctly I opened up the timezone-adjustment dialog, switched to Amsterdam Timezone, unchecked Daylight Savings Support, switched back to the Indian timezone and pressed ok. FAST ESP 5.3 sp3 Installer is happy again :$</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.edwardsmit.com/2010/04/27/fast-esp-5-3-disable-daylight-savings-in-a-timezone-without-daylight-savings/" data-id="cic5v6xfx001rwg1oxum12rkc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bug/">Bug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FAST/">FAST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Microsoft/">Microsoft</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/Debugging/">Debugging</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net/Team-Development/">Team Development</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/Team-Development/Team-Foundation-Server/">Team Foundation Server</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/BizTalk-2004/">BizTalk 2004</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/">Dev</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/OSX/">OSX</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/OSX/Ruby/">Ruby</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Digital-Life/">Digital Life</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FAST-ESP/">FAST ESP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tagged/">Tagged</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backup/">Backup</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bug/">Bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FAST/">FAST</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/">Microsoft</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby/">Ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snow-Leopard/">Snow Leopard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Time-Machine/">Time Machine</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/">VPN</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Backup/" style="font-size: 10px;">Backup</a> <a href="/tags/Bug/" style="font-size: 10px;">Bug</a> <a href="/tags/FAST/" style="font-size: 10px;">FAST</a> <a href="/tags/Mac/" style="font-size: 20px;">Mac</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/Snow-Leopard/" style="font-size: 10px;">Snow Leopard</a> <a href="/tags/Time-Machine/" style="font-size: 10px;">Time Machine</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">April 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">August 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">May 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/01/">January 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/09/">September 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">August 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/07/">July 2006</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2011/02/03/fast-esp-apiqueue-too-full-for-operation-of-size/">FAST ESP Apiqueue too full for operation of size</a>
+          </li>
+        
+          <li>
+            <a href="/2010/11/24/apple-mail-app-exchange-sync-problems-and-solution/">Apple Mail.app Exchange sync problems and solution</a>
+          </li>
+        
+          <li>
+            <a href="/2010/11/10/free-microsoft-fast-search-server-2010-for-sharepoint/">Free Microsoft FAST Search Server 2010 for SharePoint Training</a>
+          </li>
+        
+          <li>
+            <a href="/2010/08/13/parallels-explorer-is-gone-parallels-mounter-is-my-new-friend/">Parallels Explorer is gone, Parallels Mounter is the new kid</a>
+          </li>
+        
+          <li>
+            <a href="/2010/07/01/how-long-until-my-windows-password-expires/">How long until my Windows password expires?</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Edward Smit<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

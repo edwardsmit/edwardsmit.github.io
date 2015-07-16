@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  
+  <title><![CDATA[Blognote]]></title>
+  <subtitle><![CDATA[Edward&#039;s Unicode Sequences]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://blog.edwardsmit.com//"/>
+  <updated>2015-07-16T07:23:46.000Z</updated>
+  <id>http://blog.edwardsmit.com//</id>
+  
+  <author>
+    <name><![CDATA[Edward Smit]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[FAST ESP Apiqueue too full for operation of size]]></title>
+    <link href="http://blog.edwardsmit.com/2011/02/03/fast-esp-apiqueue-too-full-for-operation-of-size/"/>
+    <id>http://blog.edwardsmit.com/2011/02/03/fast-esp-apiqueue-too-full-for-operation-of-size/</id>
+    <published>2011-02-03T12:03:15.000Z</published>
+    <updated>2015-07-16T07:23:46.000Z</updated>
+    <content type="html"><![CDATA[<p>In FAST ESP 5.3 when trying to index large files, you might run in to the problem that the indexer API-queue<br>can’t handle the document because of its size.<br>By default the indexer API Queue is set at 52428800 bytes (50Mb). Mind that you only re-size this<br>API Queue when a <strong>single</strong> document is larger than the 50Mb, otherwise you can try to limit the size<br>of the submitted batch by whichever connector you are using.</p>
+<p>If you are sure you need to enlarge the indexer API Queue do the following:</p>
+<ol>
+<li>On the admin-server edit the file $FASTSEARCH\etc\config_data\RTSearch\webcluster\rtsearchrc.xml</li>
+<li>Add the attribute maxQueueSize=”<strong>78643200</strong>“ to set the indexer API Queue Size to 75Mb, adjust to<br>an appropriate value for your environment.</li>
+<li>Do a <strong>nctrl reloadcfg</strong> on the admin-server</li>
+<li>Do a restart of all indexer processes (either via <strong>nctrl</strong> or the System Management tab in the Admin-UI)</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>In FAST ESP 5.3 when trying to index large files, you might run in to the problem that the indexer API-queue<br>can’t handle the document]]>
+    </summary>
+    
+      <category term="FAST ESP" scheme="http://blog.edwardsmit.com/categories/FAST-ESP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Apple Mail.app Exchange sync problems and solution]]></title>
+    <link href="http://blog.edwardsmit.com/2010/11/24/apple-mail-app-exchange-sync-problems-and-solution/"/>
+    <id>http://blog.edwardsmit.com/2010/11/24/apple-mail-app-exchange-sync-problems-and-solution/</id>
+    <published>2010-11-24T14:35:51.000Z</published>
+    <updated>2015-07-16T07:21:58.000Z</updated>
+    <content type="html"><![CDATA[<p>At our <a href="http://www.matchminds.nl" target="_blank" rel="external">company</a> we have decided to relocate our mailserver to an hosted Exchange 2010.<br>We’ve been using Zimbra for the past three years, but we feel that development of Zimbra isn’t moving<br>into the direction of better OSX support (we are all using MacBook Pro’s) but is more focussed on enhancing<br>their webclient and own desktop-mail-client. In the meantime OSX has received good Exchange support.<br>So after a test-period with a limited number of users we decided to all switch to Exchange 2010.</p>
+<p>My sync problems started when I was trying to move complete folders with hundreds of e-mails to my Exchange<br>account. I use a big folder-structure within my Exchange account to separate all kinds of e-mails by<br>customer and by action. Mail and Exchange than got angry with each other. Mail was slowing down to an<br>unusable state, refused to sync some mailfolders and started throwing errors:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">23-11-10 19:07:28&#9;Mail[34524]&#9;*** Assertion failure in -[EWSConnection sendMessage:forRequest:], /SourceCache/Message/Message-1082/MessageStores.subproj/EWSConnection.m:374&#62;&#10;Received an unexpected error: Error Domain=EWSExchangeWebServicesErrorDomain Code=165 UserInfo=0x119f3b210 &#34;The operation couldn&#8217;t be completed. (EWSExchangeWebServicesErrorDomain error 165.)&#34;, response: (null)&#62;&#10;    0 &#160; Message &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff83bbc6e4 -[MFAssertionHandler _handleFailureWithPreamble:description:arguments:] + 137&#62;&#10;    1 &#160; Message &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff83bbc649 -[MFAssertionHandler handleFailureInMethod:object:file:lineNumber:description:] + 220&#62;&#10;    2 &#160; Message &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff83afe01b -[EWSConnection sendMessage:forRequest:] + 1117&#62;&#10;    3 &#160; Message &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff83b095b9 -[EWSGateway sendMessage:forRequest:] + 79&#62;&#10;    4 &#160; Message &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff83b1ca63 -[EWSRequestOperation executeOperation] + 104&#62;&#10;    5 &#160; Message &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff83bcaab9 -[MonitoredOperation main] + 229&#62;&#10;    6 &#160; Foundation &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;0x00007fff832e7de4 -[__NSOperationInternal start] + 681&#62;&#10;    7 &#160; Foundation &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;0x00007fff833c6beb __doStart2 + 97&#62;&#10;    8 &#160; libSystem.B.dylib &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff86bea2c4 _dispatch_call_block_and_release + 15&#62;&#10;    9 &#160; libSystem.B.dylib &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff86bc8831 _dispatch_worker_thread2 + 239&#62;&#10;    10 &#160;libSystem.B.dylib &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff86bc8168 _pthread_wqthread + 353&#62;&#10;    11 &#160;libSystem.B.dylib &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff86bc8005 start_wqthread + 13&#62;</span><br></pre></td></tr></table></figure></p>
+<p>These errors wouldn’t stop, the syncing wasn’t complete, OMG<br>Apparently I wasn’t the first to encounter these problems, but the solutions either sounded too far off for me, or were to rigorous for my taste.<br>I have found a much easier and faster method to get Exchange and Mail back to communicating with each other.</p>
+<ol>
+<li>Remove Exchange account from Mail</li>
+<li>Remove Exchange account from iCal</li>
+<li>Remove Exchange account from Address Book</li>
+<li>Close all three programs</li>
+<li>Verify that the local mailbox was removed. In ~/Library/Mail there shouldn’t be a directory named EWS-[USERNAME]@[EXCHANGE-SERVER] if it is there throw it away, and empty thrash.</li>
+<li>Start Mail</li>
+<li>Add Exchange-account using the Wizzard</li>
+<li>Only move tiny batches of e-mail between accounts<br>Although tedious, it does work :)</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>At our <a href="http://www.matchminds.nl" target="_blank" rel="external">company</a> we have decided to relocate our mailserver to an hos]]>
+    </summary>
+    
+      <category term="OSX" scheme="http://blog.edwardsmit.com/categories/OSX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Free Microsoft FAST Search Server 2010 for SharePoint Training]]></title>
+    <link href="http://blog.edwardsmit.com/2010/11/10/free-microsoft-fast-search-server-2010-for-sharepoint/"/>
+    <id>http://blog.edwardsmit.com/2010/11/10/free-microsoft-fast-search-server-2010-for-sharepoint/</id>
+    <published>2010-11-10T10:04:04.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>Microsoft has posted a bunch of videos and training tools on SharePoint 2010 Enterprise Search. <a href="http://msdn.microsoft.com/en-us/sharepoint/ff960975.aspx" target="_blank" rel="external">Have a look yourself</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Microsoft has posted a bunch of videos and training tools on SharePoint 2010 Enterprise Search. <a href="http://msdn.microsoft.com/en-us/]]>
+    </summary>
+    
+      <category term="FAST ESP" scheme="http://blog.edwardsmit.com/categories/FAST-ESP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Parallels Explorer is gone, Parallels Mounter is the new kid]]></title>
+    <link href="http://blog.edwardsmit.com/2010/08/13/parallels-explorer-is-gone-parallels-mounter-is-my-new-friend/"/>
+    <id>http://blog.edwardsmit.com/2010/08/13/parallels-explorer-is-gone-parallels-mounter-is-my-new-friend/</id>
+    <published>2010-08-13T14:04:36.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>It’s a tool I rarely use, Parallels Explorer. It enables you to browse a Virtual Machine Disk from OSX without booting the whole Virtual Machine. Today I needed the tool, but I couldn’t find it anywhere. Tried Google and searching the Parallels Support Forums, but nowhere any explanation where the Parallels Explorer could be found. So I started a chat with Parallels Support, and it appears that Parallels Explorer was available in Parallels Desktop 4.0. In Parallels Desktop 5.0 it is replace by a tool called Parallels Mounter. You don’t start it directly from your Applications folder, but you can select it from the Open With… list after you’ve right-clicked the VM Harddisk in Finder.<br>As I couldn’t find this information myself via Google, I hope this post will help anybody in search for Paralells Explorer.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>It’s a tool I rarely use, Parallels Explorer. It enables you to browse a Virtual Machine Disk from OSX without booting the whole Virtual ]]>
+    </summary>
+    
+      <category term="OSX" scheme="http://blog.edwardsmit.com/categories/OSX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[How long until my Windows password expires?]]></title>
+    <link href="http://blog.edwardsmit.com/2010/07/01/how-long-until-my-windows-password-expires/"/>
+    <id>http://blog.edwardsmit.com/2010/07/01/how-long-until-my-windows-password-expires/</id>
+    <published>2010-07-01T06:32:25.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>I was wondering how long before I have to change my password at a client-site. Scripting to the rescue, scroll down to the bottom of <a href="http://msdn.microsoft.com/en-us/library/ms974598.aspx" target="_blank" rel="external">this page</a>, copy the code into a <code>expiration.vbs</code> file and start it from the commandline using <code>start expiration.vbs</code></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I was wondering how long before I have to change my password at a client-site. Scripting to the rescue, scroll down to the bottom of <a h]]>
+    </summary>
+    
+      <category term="Digital Life" scheme="http://blog.edwardsmit.com/categories/Digital-Life/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[FAST ESP 5.3 - Disable daylight savings in a timezone without daylight savings]]></title>
+    <link href="http://blog.edwardsmit.com/2010/04/27/fast-esp-5-3-disable-daylight-savings-in-a-timezone-without-daylight-savings/"/>
+    <id>http://blog.edwardsmit.com/2010/04/27/fast-esp-5-3-disable-daylight-savings-in-a-timezone-without-daylight-savings/</id>
+    <published>2010-04-27T12:24:25.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>I’m installing a FAST ESP 5.3 sp3 setup in India. No I’m not there physically, via a remote desktop. As you might know, FAST doesn’t like Daylight Savings Time Adjustment. The Indian Timezone used by the server does not obey Daylight Savings, but the FAST ESP 5.3 sp3 installer still blocked on it’s check of Daylight Savings. To disable this correctly I opened up the timezone-adjustment dialog, switched to Amsterdam Timezone, unchecked Daylight Savings Support, switched back to the Indian timezone and pressed ok. FAST ESP 5.3 sp3 Installer is happy again :$</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I’m installing a FAST ESP 5.3 sp3 setup in India. No I’m not there physically, via a remote desktop. As you might know, FAST doesn’t like]]>
+    </summary>
+    
+      <category term="Bug" scheme="http://blog.edwardsmit.com/tags/Bug/"/>
+    
+      <category term="FAST" scheme="http://blog.edwardsmit.com/tags/FAST/"/>
+    
+      <category term="Microsoft" scheme="http://blog.edwardsmit.com/tags/Microsoft/"/>
+    
+      <category term="FAST ESP" scheme="http://blog.edwardsmit.com/categories/FAST-ESP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Citrix SA Client for Mac OSX]]></title>
+    <link href="http://blog.edwardsmit.com/2010/03/30/citrix-sa-client-for-mac-osx/"/>
+    <id>http://blog.edwardsmit.com/2010/03/30/citrix-sa-client-for-mac-osx/</id>
+    <published>2010-03-30T11:14:25.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>Some time ago for a specific client I needed to connect to some protected infrastructure using some proprietary Citrix client. The firewall protecting the infrastructure only allowed access via VPN technology as implemented in the Citrix SA Client. At the time I couldn’t find a Mac OSX client, and the Administrator of the firewall protected environment also told me that no such software was available. So I ended up using parallels with a windows OS and running the client on that platform. Today I had some serious connection problems from windows to the aforementioned firewall, the connection would drop and reestablish every 15 seconds, not workable. I suspect there is something wrong with the parallels network driver within windows in combination with the Airport wireless network I’m using since a couple of days.<br>This let me to search for the Citrix SA Client once more, and guess what; <a href="http://www.citrix.com/site/SS/downloads/details.asp?downloadId=1857838&amp;productId=15005" target="_blank" rel="external">I found it</a>! Installed like a charm, and now Remote Desktop-ing to the servers from OSX. I hate it when I need specific software for setting up a VPN, but I love it when it works like a charm.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Some time ago for a specific client I needed to connect to some protected infrastructure using some proprietary Citrix client. The firewa]]>
+    </summary>
+    
+      <category term="Mac" scheme="http://blog.edwardsmit.com/tags/Mac/"/>
+    
+      <category term="VPN" scheme="http://blog.edwardsmit.com/tags/VPN/"/>
+    
+      <category term="OSX" scheme="http://blog.edwardsmit.com/categories/OSX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Snow Leopard with Ruby 1.9 and Rails 2.3.5]]></title>
+    <link href="http://blog.edwardsmit.com/2009/12/24/snow-leopard-with-ruby-1-9-and-rails-2-3-5/"/>
+    <id>http://blog.edwardsmit.com/2009/12/24/snow-leopard-with-ruby-1-9-and-rails-2-3-5/</id>
+    <published>2009-12-24T09:39:44.000Z</published>
+    <updated>2015-07-16T07:45:24.000Z</updated>
+    <content type="html"><![CDATA[<p>I’m working my way through “Agile Web Development with Rails - Third Edition” and the latest version of the PickAxe “Programming Ruby - Third Edition” books of the Pragmatic Programmers.<br>As Snow Leopard is my OS I need to update the default shipped Ruby and Rails versions to get to Ruby 1.9 and Rails on top of that.</p>
+<p>I’ve been installing and uninstalling multiple things before finally settling on my ultimate recipe for installing the correct Ruby version and Gems:<br>(Within Terminal and already running the latest version of <a href="http://www.macports.org/install.php" target="_blank" rel="external">macports</a> )<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo port install ruby19 +nosuffix</span><br><span class="line">sudo port install sqlite3</span><br><span class="line">sudo gem update --system</span><br><span class="line">sudo gem install sqlite3-ruby</span><br><span class="line">sudo gem install rails</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I’m working my way through “Agile Web Development with Rails - Third Edition” and the latest version of the PickAxe “Programming Ruby - T]]>
+    </summary>
+    
+      <category term="Ruby" scheme="http://blog.edwardsmit.com/tags/Ruby/"/>
+    
+      <category term="Snow Leopard" scheme="http://blog.edwardsmit.com/tags/Snow-Leopard/"/>
+    
+      <category term="Dev" scheme="http://blog.edwardsmit.com/categories/Dev/"/>
+    
+      <category term="OSX" scheme="http://blog.edwardsmit.com/categories/Dev/OSX/"/>
+    
+      <category term="Ruby" scheme="http://blog.edwardsmit.com/categories/Dev/OSX/Ruby/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Great Visual Diff/Merge tool for OSX]]></title>
+    <link href="http://blog.edwardsmit.com/2009/12/08/great-visual-diffmerge-tool-for-osx/"/>
+    <id>http://blog.edwardsmit.com/2009/12/08/great-visual-diffmerge-tool-for-osx/</id>
+    <published>2009-12-08T10:12:34.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>Back when my primary dev-environment was Microsoft I would use the open-source tool <a href="http://winmerge.org/" target="_blank" rel="external">WinMerge</a> for all my Diff/Merge needs. Great tool, good performance, does the job.<br>Now that I’ve switched to the Mac I had to find a new visual Diff/Merge tool, and I want it cheap, or better free :)<br>Searches in the past didn’t turn up any satisfying results, but I think I’ve found the tool to do the job. Sourcegear, a company I knew from the past for their Vault product, which is a compelling replacement of Visual SourceSafe, has been so kind to distribute their Diff/Merge tool as a standalone and <strong>free</strong> cross-platform tool.<br>Downloaded, used it for comparing and merging FAST indexprofile files (which are plain XML), loving it.<br>Oh, I’m not affiliated to Sourcegear in any way, just like their Diff/Merge tool on OSX.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Back when my primary dev-environment was Microsoft I would use the open-source tool <a href="http://winmerge.org/" target="_blank" rel="e]]>
+    </summary>
+    
+      <category term="Dev" scheme="http://blog.edwardsmit.com/categories/Dev/"/>
+    
+      <category term="OSX" scheme="http://blog.edwardsmit.com/categories/Dev/OSX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Restoring MacBook Pro using Time Capsule]]></title>
+    <link href="http://blog.edwardsmit.com/2009/10/26/restoring-macbook-pro-using-time-capsule/"/>
+    <id>http://blog.edwardsmit.com/2009/10/26/restoring-macbook-pro-using-time-capsule/</id>
+    <published>2009-10-26T10:40:50.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>To my horror suddenly my MacBook Pro wouldn’t display anything anymore, a blank screen was all I got. Hooked up an external monitor, no success. Searched the internet and concluded that I might have a broken Nvidia graphics “card” (it’s soldered on the board so it’s not really a card) as the batch my MBP is from contains a faulty Nvidia card <a href="http://support.apple.com/kb/TS2377" target="_blank" rel="external">http://support.apple.com/kb/TS2377</a><br>So I went to an Apple Service Center where they concluded that indeed my graphics card is broken and that repair is covered by the extended warranty. The ASC had a MBP for rent for the duration of the repair, but as I was late on the day they weren’t able to swap the harddisks.<br>So I took the MBP home and ventured out to restore a Time Machine backup. I have a Time Capsule so there should be a recent backup available.<br>The MBP booted into the installation of Leopard, after the introduction video (couldn’t bypass watching the whole video) I was give the option to do a restore from a backup. Selected the option, the MBP found my Time Capsule but after I selected a backup-set got the Spinning Beachball and nothing happening for more than an hour, I uttered a small curse.<br>What the heck, let’s boot into Leopard and start the Migration Assistant. Hmm, the same experience, found my Time Capsule but after selecting the backup-set a Beachball. Damn.<br>Read something about restoring a backup by starting the restore tool off from the OSX installation CD. So started the utilities, selected the restore, hmm it can’t find my Time Capsule. Looked up a knowledgebase article on the Apple site and found that I had to start the Wireless network by clicking the WIFI icon in the upper right corner of the utilities screen. Ok, so the backup-set can be selected, but you guessed it, a Beachball.<br>Than it dawned me that the backup was made with Time Machine running Snow Leopard not Leopard, so I put in the Snow Leopard DVD, started the Utilities, selected restore from Time Capsule, saw the backupset, and now was able to select exactly which backup I wanted to restore. Selected the most recent (which was from just before the screen problems started) and went to bed.<br>The next morning I was greeted with my trusted login-screen and everything was installed in such a way that I couldn’t tell that I was working on another machine. Great, love automatic backups. Note to Apple, a meaningful message along the lines of “Backup was created with a newer version of Time Machine” would have saved me a couple of hours.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>To my horror suddenly my MacBook Pro wouldn’t display anything anymore, a blank screen was all I got. Hooked up an external monitor, no s]]>
+    </summary>
+    
+      <category term="Backup" scheme="http://blog.edwardsmit.com/tags/Backup/"/>
+    
+      <category term="Mac" scheme="http://blog.edwardsmit.com/tags/Mac/"/>
+    
+      <category term="Time Machine" scheme="http://blog.edwardsmit.com/tags/Time-Machine/"/>
+    
+      <category term="Digital Life" scheme="http://blog.edwardsmit.com/categories/Digital-Life/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Switching to Git]]></title>
+    <link href="http://blog.edwardsmit.com/2009/08/11/switching-to-git/"/>
+    <id>http://blog.edwardsmit.com/2009/08/11/switching-to-git/</id>
+    <published>2009-08-11T21:08:18.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>I’ve been using subversion for a very long time. During that period I’ve got several people and one company hooked on this version control system after I got frustrated with SourceSafe. SourceSafe was the only version control software developers on the Microsoft platform knew, if they did any. For those people subversion was a giant leap, but once they saw it in action on they’re large .net projects they were sold.<br>Once I moved to the Mac OS X platform subversion happily travelled along for my local version control.<br>I’ve always had two main frustrations with subversion:</p>
+<ol>
+<li>In a local situation you are stuck with a directory on your system which doesn’t contain anything sensible: your local repository</li>
+<li>It is not easy to convert a local directory to a working copy under version control (add/commit/checkout)<br>Now I’ve switched to <a href="http://git-scm.com/" title="Git" target="_blank" rel="external">Git</a> and I will undoubtly find issues using it, but so far my two main frustrations are solved with three lines of code<pre class="brush: bash">git init
+git add .
+git commit -m "First commit"</pre></li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I’ve been using subversion for a very long time. During that period I’ve got several people and one company hooked on this version contro]]>
+    </summary>
+    
+      <category term="Digital Life" scheme="http://blog.edwardsmit.com/categories/Digital-Life/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[iCal problem CalDAVDeleteEntityQueueableOperation]]></title>
+    <link href="http://blog.edwardsmit.com/2009/08/04/ical-problem-caldavdeleteentityqueueableoperation/"/>
+    <id>http://blog.edwardsmit.com/2009/08/04/ical-problem-caldavdeleteentityqueueableoperation/</id>
+    <published>2009-08-04T15:47:38.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>Just <a href="http://www.google.com/search?hl=en&amp;rls=en-us&amp;q=zimbra+CalDAVDeleteEntityQueueableOperation" target="_blank" rel="external">one result in Google</a>, but exactly the problem I was experiencing :)<br>Changed the preference and restarted iCal. Problem solved.<br>Thanks Matt.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Just <a href="http://www.google.com/search?hl=en&amp;rls=en-us&amp;q=zimbra+CalDAVDeleteEntityQueueableOperation" target="_blank" rel="ex]]>
+    </summary>
+    
+      <category term="Digital Life" scheme="http://blog.edwardsmit.com/categories/Digital-Life/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Are you still listening?]]></title>
+    <link href="http://blog.edwardsmit.com/2009/07/28/are-you-still-listening/"/>
+    <id>http://blog.edwardsmit.com/2009/07/28/are-you-still-listening/</id>
+    <published>2009-07-28T13:25:44.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>Yeah I know, it’s been a while. I’ve been putting this off for a very, very long time.</p>
+<p>I used to blog on tech-stuff I ran into in my job, I don’t think that will come back. We’ll see where this is going.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Yeah I know, it’s been a while. I’ve been putting this off for a very, very long time.</p>
+<p>I used to blog on tech-stuff I ran into in ]]>
+    </summary>
+    
+      <category term="blog" scheme="http://blog.edwardsmit.com/categories/blog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Searching the Java RunTime for Vista 64-bit]]></title>
+    <link href="http://blog.edwardsmit.com/2007/08/31/searching-the-java-runtime-for-vista-64-bit/"/>
+    <id>http://blog.edwardsmit.com/2007/08/31/searching-the-java-runtime-for-vista-64-bit/</id>
+    <published>2007-08-31T06:37:27.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>I had a hard time finding the correct JRE for my Vista 64-bit installation. Apparantly it’s not on the <a href="http://www.Java.Com" target="_blank" rel="external">Www.Java.Com</a> site, at least I couldn’t find it on the downloads page, and don’t get me started on the automated detection/installation procedure at that site. I had more luck on the Sun-site, follow the path of downloads, category, Java, Java 2 Platform Standard Edition, Latest Release (in the top blue header part) for some reason it redirects me first to the Java 5 downloads, Java Runtime 6 update X and there on the bottom the 64-bit for Windows AMD.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I had a hard time finding the correct JRE for my Vista 64-bit installation. Apparantly it’s not on the <a href="http://www.Java.Com" targ]]>
+    </summary>
+    
+      <category term="Dev" scheme="http://blog.edwardsmit.com/categories/Dev/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[BizTalk Web Service Publishing Wizard Error: Method not found: System.Xml.Serialization.XmlMapping.get_ElementName()]]></title>
+    <link href="http://blog.edwardsmit.com/2007/08/17/biztalk-web-service-publishing-wizard-error-method-not-found-system-xml-serialization-xmlmapping-get-elementname/"/>
+    <id>http://blog.edwardsmit.com/2007/08/17/biztalk-web-service-publishing-wizard-error-method-not-found-system-xml-serialization-xmlmapping-get-elementname/</id>
+    <published>2007-08-17T09:38:29.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>I was stunned, I had defined a Request schema and a Response schema to be used by a Web Service I wanted to implement in BizTalk 2004. The Request schema was straightforward, just some fields which made up a Service Request. The response would be a collection of 0 to N “Records”.</p>
+<p>I had the Response Schema defined somewhere around the lines of this:</p>
+<pre class="brush: xml">
+&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;xs:schema xmlns="http://BizTalk_Webservice_Publishing_issue.Schema2"
+  xmlns:b="http://schemas.microsoft.com/BizTalk/2003"
+  targetNamespace="http://BizTalk_Webservice_Publishing_issue.Schema2"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="Root"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element minOccurs="0" maxOccurs="unbounded" name="Record"&gt;
+          &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+              &lt;xs:element name="Field1" type="xs:string" /&gt;
+              &lt;xs:element name="Field2" type="xs:string" /&gt;
+              &lt;xs:element name="Field3" type="xs:string" /&gt;
+            &lt;/xs:sequence&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;
+</pre>
+
+<p>Looks sensible right? It compiles okay, I can make an Orchestration with a Request-Response port, everything looks fine, until the Web Service Publishing Wizard gives me:</p>
+<pre class="brush: csharp">
+Failed to create project http://localhost/BizTalk_Webservice_Publishing_issue_Proxy.
+[Microsoft.BizTalk.WebServices.PublishingException] Failed to construct code for schema "http://BizTalk_Webservice_Publishing_issue.Schema2".
+Method not found: System.String System.Xml.Serialization.XmlMapping.get_ElementName().
+</pre>
+I didn't get it, what was wrong? After searching the internet (in which I obviously found one of [Patrick's blogpost](http://bloggingabout.net/blogs/wellink/archive/2007/05/22/solving-the-microsoft-biztalk-webservices-publishingexception-with-imported-schema-s.aspx) which didn't help in this case as I had no imported schema's) I began some experiments. I determined that the cause lies in the multiplicity on the **Record** element. It didn't matter what values I used, as soon as the schema allowed more than one **Record** element to be a part of the message, the Wizard failed on me.
+
+I don't remember how I got the idea, but the solution is rather simple. It appears that the Wizard doesn't like the multiplicity _on the **element**_. So, let's put the multiplicity one level higher, **_around_** the element, like this:
+<pre class="brush: xml">
+&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;xs:schema xmlns="http://BizTalk_Webservice_Publishing_issue.Schema2"
+  xmlns:b="http://schemas.microsoft.com/BizTalk/2003"
+  targetNamespace="http://BizTalk_Webservice_Publishing_issue.Schema2"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;xs:element name="Root"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:sequence minOccurs="0" maxOccurs="unbounded"&gt;
+          &lt;xs:element name="Record"&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:sequence&gt;
+                &lt;xs:element name="Field1" type="xs:string" /&gt;
+                &lt;xs:element name="Field2" type="xs:string" /&gt;
+                &lt;xs:element name="Field3" type="xs:string" /&gt;
+              &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;
+</pre>
+
+<p>So after encapsulating the <strong>Record</strong> element in a <em>Sequence</em> on which I added the multiplicity, all was well. I don’t think I fully understand why the Wizard (or XSD.exe which is running the show in the background) fails on the first version, but now I do know how to solve this.</p>
+<p><strong>Update:</strong> fixed the formatting of the XML Schema’s for readability.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I was stunned, I had defined a Request schema and a Response schema to be used by a Web Service I wanted to implement in BizTalk 2004. Th]]>
+    </summary>
+    
+      <category term="BizTalk 2004" scheme="http://blog.edwardsmit.com/categories/BizTalk-2004/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Visual Studio Debugging Problems]]></title>
+    <link href="http://blog.edwardsmit.com/2007/05/09/visual-studio-debugging-problems/"/>
+    <id>http://blog.edwardsmit.com/2007/05/09/visual-studio-debugging-problems/</id>
+    <published>2007-05-09T10:55:53.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>Note to self: An excellent post for all your <a href="http://blogs.msdn.com/mkpark/articles/86872.aspx" target="_blank" rel="external">Visual Studio debugging problems</a>.</p>
+<p>This one has helped me more than once, kudo’s to Min Kwan Park.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Note to self: An excellent post for all your <a href="http://blogs.msdn.com/mkpark/articles/86872.aspx" target="_blank" rel="external">Vi]]>
+    </summary>
+    
+      <category term=".Net" scheme="http://blog.edwardsmit.com/categories/Net/"/>
+    
+      <category term="Debugging" scheme="http://blog.edwardsmit.com/categories/Net/Debugging/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[I want to store more items]]></title>
+    <link href="http://blog.edwardsmit.com/2007/01/24/i-want-to-store-more-items/"/>
+    <id>http://blog.edwardsmit.com/2007/01/24/i-want-to-store-more-items/</id>
+    <published>2007-01-24T14:31:21.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>I’m running Vista and Office 2007. Previously I used <a href="http://www.newsgator.com" target="_blank" rel="external">Newsgator</a> for all my blogreading, but the new Windows RSS platform in combination with Outlook 2007 brings me the exact same functionality.</p>
+<p>It appears that the feeds have a limit for the number of items they can contain, this limit is by default set at 200. That’s not enough for me. You can set the limit by modifying the feed properties, but that would mean I needed to right-click al the feeds (100+) so I needed another way to modify all the feeds. Of course the Windows RSS Platform has an API, so some programming will come to the rescue. I originally thought that this would be an excellent opportunity to delve into Powershell, but it appears that Powershell is not yet available for Vista at this moment :-(</p>
+<p>So some JavaScript to the rescue. Run it using cscript, and all feeds will be modified.</p>
+<p><pre class="brush: javascript">  var feedsManager, rootFolder;<br>  feedsManager = new ActiveXObject(“Microsoft.FeedsManager”);<br>  rootFolder = feedsManager.RootFolder;<br>  iterateFolders(rootFolder);</pre></p>
+<p>  function iterateFolders(folder)<br>  {<br>    if (null == folder) return;<br>    var currentFolder;<br>    var e = new Enumerator(folder.Subfolders);<br>    for(;!e.atEnd();e.moveNext())<br>    {<br>      currentFolder = e.item();<br>      iterateFolders(currentFolder);<br>    }<br>    iterateFeeds(folder);<br>  }</p>
+<p>  function iterateFeeds(feedFolder)<br>  {<br>    if (null == feedFolder) return;<br>    var feed;<br>    var e = new Enumerator(feedFolder.Feeds);<br>    for(;!e.atEnd();e.moveNext())<br>    {<br>      feed=e.item();<br>      //feed.MaxItemCount = feedsManager.ItemCountLimit;<br>      feed.MaxItemCount = 0;<br>      WScript.Echo(feed.Name + “: “ + feed.MaxItemCount);<br>    }<br>  }<br>Update: I previously set the MaxItemcount to the ItemCountLimit (2500), set it to 0 to set it to unlimited</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I’m running Vista and Office 2007. Previously I used <a href="http://www.newsgator.com" target="_blank" rel="external">Newsgator</a> for ]]>
+    </summary>
+    
+      <category term="Digital Life" scheme="http://blog.edwardsmit.com/categories/Digital-Life/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Tagged - 5 Things you didn't know about me.]]></title>
+    <link href="http://blog.edwardsmit.com/2007/01/08/tagged-5-things-you-didnt-know-about-me/"/>
+    <id>http://blog.edwardsmit.com/2007/01/08/tagged-5-things-you-didnt-know-about-me/</id>
+    <published>2007-01-08T08:31:50.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>As I have always believed in the <a href="http://en.wikipedia.org/wiki/Six_degrees_of_separation" target="_blank" rel="external">Six Degrees Of Separation</a>, I’m not surprised this whole tagging game eventually ended up here. Thanks to <a href="http://bloggingabout.net/blogs/carlo/archive/2007/01/04/an-accident-waiting-to-happen.aspx" target="_blank" rel="external">Carlo</a> for confirming my believes.<br>So here are&nbsp;the 5 things you maybe didn’t know about me.</p>
+<p>5) I started programming on the ZX81. I had the 16Kb expansion pack and a lot of my time went into typing in programs from the various magazines (there were a lot of those back then). Later I started writing my own programs. As I’m Dutch and only had very minimal education in English when I was 12, I learned myself to read English in the progress.</p>
+<p>4) I have a diverse musical taste. I love to listen to Disco Classics, House, Trance, Rock and Progressive Rock. You can run into me at a Steve Vai concert one week and at Dance Valley the other. Some other concerts (in no particular order) you can have seen me would be from Iron Maiden, Deep Purple, Audioslave, Toto, Simon Phillips, David Lee Roth, Joe Satriani, Dream Theater, Van Halen, Bon Jovi, Whitesnake, Tony Macalpine, Metallica. Some Dance Spots where you can have met me include Trance Energy, Innercity, Tiesto in Concert, Mysteryland, the LoveParade, Parkzicht and de Barocci. </p>
+<p>3) I play electric guitar in a band. My guitar had been stolen and after I had spotted it for sale on the internet, hours before I went on vacation to Spain, my friends did enough detective work to have the police get my guitar back, without a scratch.</p>
+<p>2) In 1998 I presented a session on TechEd Europe on COM+ Without a doubt it is the largest crowd I have ever presented to.</p>
+<p>1) My dad is Indonesian so I’m a half-blood. I guess that’s the reason why I tan so easily and dark, why I prefer heat over cold, why I eat rice at least once a week (and don’t mind to eat it for breakfast, lunch and diner 7 days-a-week) and love spicey food.</p>
+<p>Let’s tag 5 more people who aren’t tagged yet, here you go <a href="http://blogs.infosupport.com/marcelv/" target="_blank" rel="external">Marcel</a>, <a href="http://martijnh.blogspot.com/" target="_blank" rel="external">Martijn</a>, <a href="http://bloggingabout.net/blogs/Ramon/" target="_blank" rel="external">Ramon</a>, <a href="http://bloggingabout.net/blogs/waseem/default.aspx" target="_blank" rel="external">Waseem</a> and <a href="http://www.mwolf.net/" target="_blank" rel="external">Martin</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>As I have always believed in the <a href="http://en.wikipedia.org/wiki/Six_degrees_of_separation" target="_blank" rel="external">Six Degr]]>
+    </summary>
+    
+      <category term="Tagged" scheme="http://blog.edwardsmit.com/categories/Tagged/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Getting the UK SDC BizTalk 2004 Documenter to run]]></title>
+    <link href="http://blog.edwardsmit.com/2006/09/21/getting-the-uk-sdc-biztalk-2004-documenter-to-run/"/>
+    <id>http://blog.edwardsmit.com/2006/09/21/getting-the-uk-sdc-biztalk-2004-documenter-to-run/</id>
+    <published>2006-09-21T08:03:05.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<p>Finally I’ve managed to get the BizTalk 2004 Documenter to run. If you’ve got problems creating documentation using this tool yourself maybe this will do the trick for you as well. The problem I had was that after the generation a Error box would show up, and nothing was created. After fixing both problems below the tool worked like a charm.</p>
+<p><font size="3">The TMP environment-variable<br></font>On&nbsp;the machine I’m currently using the TMP environment-variable was mapped to %userprofile%\local settings\temp and the UserProfile is redirected to a network-share. I changed the TMP environment-variable to a directory on the local drive. You can change this in a dialog which you can&nbsp;edit after pressing the Environment Variables button on the&nbsp;the Advanced tab of the System Properties which you get when selecting Properties from the context menu of My Computer.</p>
+<p><font size="3">The path to Microsoft.BizTalk.XLangView.dll<br></font>The documenter relies on forementioned dll. The path to this dll is configured in the Microsoft.Sdc.BiztalkDocumenter.exe.config file. When you’ve got a default install, the path to this dll is set correctly, but in my case BizTalk 2004 is installed on a non-default location, so I had to change this path.&nbsp;It was there right under my nose the whole time…</p>
+<p>&nbsp;</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Finally I’ve managed to get the BizTalk 2004 Documenter to run. If you’ve got problems creating documentation using this tool yourself ma]]>
+    </summary>
+    
+      <category term="BizTalk 2004" scheme="http://blog.edwardsmit.com/categories/BizTalk-2004/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Limiting the AssignedTo dropdown-population for Team Foundation Server workitems]]></title>
+    <link href="http://blog.edwardsmit.com/2006/08/02/limiting-the-assignedto-dropdown-population-for-team-foundation-server-workitems/"/>
+    <id>http://blog.edwardsmit.com/2006/08/02/limiting-the-assignedto-dropdown-population-for-team-foundation-server-workitems/</id>
+    <published>2006-08-02T08:46:04.000Z</published>
+    <updated>2015-07-16T07:10:10.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="The_Situation">The Situation</h3><p>You are running multiple Team Foundation Server projects with different developers working on different projects. All of the projects use the MSF Agile process. When a workitem is created (Task, Bug, etc.) you are able to assign a workitem to a designated user. The UI contains with a dropdown which is filled with all TFS users, not just the projectmembers. Furthermore you find it undesirable that new workitems are assigned to the creator by default.</p>
+<h3 id="Desired_situation">Desired situation</h3><p>When selecting a person to assign a workitem to, the dropdown is filled with persons assigned to the project’s Contributors or Project Administrator group. New workitems are assigned to no one in paticular. Both new and current projects should work this way.</p>
+<h3 id="Steps_to_get_there">Steps to get there</h3><p>Download the process template for MSF Agile using the Process Template Manager.<br>Modify the files <code>Bug.xml</code>, <code>QoS.xml</code>, <code>Risk.xml</code>, <code>Scenario.xml</code> and <code>Task.xml</code> (located in the <code>&quot;MSF for Agile Software Development - v4.0\WorkItem Tracking\TypeDefinitions&quot;</code> directory) such that</p>
+<p><pre class="brush: xml">&lt;FIELD name=”Assigned To” refname=”System.AssignedTo” type=”String”&gt;<br>   &lt;VALIDUSER/&gt;<br>&lt;/FIELD&gt;</pre><br>is changed into</p>
+<p><pre class="brush: xml">&lt;FIELD name=”Assigned To” refname=”System.AssignedTo” type=”String”&gt;<br>   &lt;ALLOWEDVALUES expanditems=”true” filteritems=”excludegroups”&gt;<br>      &lt;LISTITEM value=”[Project]\Project Administrators” /&gt;<br>      &lt;LISTITEM value=”[Project]\Contributors” /&gt;<br>      &lt;LISTITEM value=”Unassigned” /&gt;<br>   &lt;/ALLOWEDVALUES&gt;<br>   &lt;DEFAULT from=”value” value=”Unassigned” /&gt;<br> &lt;/FIELD&gt;</pre><br>The syntax of <a href="http://msdn2.microsoft.com/en-us/library/aa337646.aspx" target="_blank" rel="external">ALLOWEDVALUES</a>, <a href="http://msdn2.microsoft.com/en-us/library/ms194974.aspx" target="_blank" rel="external">LISTITEM</a> and <a href="http://msdn2.microsoft.com/en-us/library/aa337630.aspx" target="_blank" rel="external">DEFAULT</a> as well as <a href="http://msdn2.microsoft.com/en-us/library/ms194969.aspx" target="_blank" rel="external">some info on expansion</a> can be read in the <a href="http://msdn2.microsoft.com/en-us/library/default.aspx" target="_blank" rel="external">MSDN Library</a>. After you’ve added users or groups to the project groups don’t forget to do a refresh of the project before opening a workitem, otherwise the list isn’t populated correctly, I think that expanding of the lists is done on the server, not on the client.</p>
+<p>To correct any pre-existing projects you’ll have to use the <a href="http://msdn2.microsoft.com/en-US/library/ms253163.aspx" target="_blank" rel="external">witimport</a> tool to update the template files in each project. So for all your projects you have to run the following commands in a command window (ofcourse substituting the placeholders for your own TFS ServerName and ProjectName):</p>
+<p><pre class="brush: shell">witimport /t &lt;TFS ServerName&gt; /p &lt;ProjectName&gt; /f &lt;fullPathToModifiedFile&gt;\Bug.xml<br>witimport /t &lt;TFS ServerName&gt; /p &lt;ProjectName&gt; /f &lt;fullPathToModifiedFile&gt;\QoS.xml<br>witimport /t &lt;TFS ServerName&gt; /p &lt;ProjectName&gt; /f &lt;fullPathToModifiedFile&gt;\Risk.xml<br>witimport /t &lt;TFS ServerName&gt; /p &lt;ProjectName&gt; /f &lt;fullPathToModifiedFile&gt;\Scenario.xml<br>witimport /t &lt;TFS ServerName&gt; /p &lt;ProjectName&gt; /f &lt;fullPathToModifiedFile&gt;\Task.xml</pre><br>Again, remember to refresh any running Team Explorer instances to receive the changes on the client machines.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="The_Situation">The Situation</h3><p>You are running multiple Team Foundation Server projects with different developers working on di]]>
+    </summary>
+    
+      <category term=".Net" scheme="http://blog.edwardsmit.com/categories/Net/"/>
+    
+      <category term="Team Development" scheme="http://blog.edwardsmit.com/categories/Net/Team-Development/"/>
+    
+      <category term="Team Foundation Server" scheme="http://blog.edwardsmit.com/categories/Net/Team-Development/Team-Foundation-Server/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: OSX | Blognote</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blognote">
+<meta property="og:url" content="http://blog.edwardsmit.com/categories/OSX/index.html">
+<meta property="og:site_name" content="Blognote">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Blognote">
+<meta name="twitter:description">
+  
+    <link rel="alternative" href="/atom.xml" title="Blognote" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blognote</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Edward&amp;#039;s Unicode Sequences</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.edwardsmit.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-apple-mail-app-exchange-sync-problems-and-solution" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/11/24/apple-mail-app-exchange-sync-problems-and-solution/" class="article-date">
+  <time datetime="2010-11-24T14:35:51.000Z" itemprop="datePublished">24 11 2010</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/OSX/">OSX</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/11/24/apple-mail-app-exchange-sync-problems-and-solution/">Apple Mail.app Exchange sync problems and solution</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>At our <a href="http://www.matchminds.nl" target="_blank" rel="external">company</a> we have decided to relocate our mailserver to an hosted Exchange 2010.<br>We’ve been using Zimbra for the past three years, but we feel that development of Zimbra isn’t moving<br>into the direction of better OSX support (we are all using MacBook Pro’s) but is more focussed on enhancing<br>their webclient and own desktop-mail-client. In the meantime OSX has received good Exchange support.<br>So after a test-period with a limited number of users we decided to all switch to Exchange 2010.</p>
+<p>My sync problems started when I was trying to move complete folders with hundreds of e-mails to my Exchange<br>account. I use a big folder-structure within my Exchange account to separate all kinds of e-mails by<br>customer and by action. Mail and Exchange than got angry with each other. Mail was slowing down to an<br>unusable state, refused to sync some mailfolders and started throwing errors:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">23-11-10 19:07:28&#9;Mail[34524]&#9;*** Assertion failure in -[EWSConnection sendMessage:forRequest:], /SourceCache/Message/Message-1082/MessageStores.subproj/EWSConnection.m:374&#62;&#10;Received an unexpected error: Error Domain=EWSExchangeWebServicesErrorDomain Code=165 UserInfo=0x119f3b210 &#34;The operation couldn&#8217;t be completed. (EWSExchangeWebServicesErrorDomain error 165.)&#34;, response: (null)&#62;&#10;    0 &#160; Message &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff83bbc6e4 -[MFAssertionHandler _handleFailureWithPreamble:description:arguments:] + 137&#62;&#10;    1 &#160; Message &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff83bbc649 -[MFAssertionHandler handleFailureInMethod:object:file:lineNumber:description:] + 220&#62;&#10;    2 &#160; Message &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff83afe01b -[EWSConnection sendMessage:forRequest:] + 1117&#62;&#10;    3 &#160; Message &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff83b095b9 -[EWSGateway sendMessage:forRequest:] + 79&#62;&#10;    4 &#160; Message &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff83b1ca63 -[EWSRequestOperation executeOperation] + 104&#62;&#10;    5 &#160; Message &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff83bcaab9 -[MonitoredOperation main] + 229&#62;&#10;    6 &#160; Foundation &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;0x00007fff832e7de4 -[__NSOperationInternal start] + 681&#62;&#10;    7 &#160; Foundation &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;0x00007fff833c6beb __doStart2 + 97&#62;&#10;    8 &#160; libSystem.B.dylib &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff86bea2c4 _dispatch_call_block_and_release + 15&#62;&#10;    9 &#160; libSystem.B.dylib &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff86bc8831 _dispatch_worker_thread2 + 239&#62;&#10;    10 &#160;libSystem.B.dylib &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff86bc8168 _pthread_wqthread + 353&#62;&#10;    11 &#160;libSystem.B.dylib &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 0x00007fff86bc8005 start_wqthread + 13&#62;</span><br></pre></td></tr></table></figure></p>
+<p>These errors wouldn’t stop, the syncing wasn’t complete, OMG<br>Apparently I wasn’t the first to encounter these problems, but the solutions either sounded too far off for me, or were to rigorous for my taste.<br>I have found a much easier and faster method to get Exchange and Mail back to communicating with each other.</p>
+<ol>
+<li>Remove Exchange account from Mail</li>
+<li>Remove Exchange account from iCal</li>
+<li>Remove Exchange account from Address Book</li>
+<li>Close all three programs</li>
+<li>Verify that the local mailbox was removed. In ~/Library/Mail there shouldn’t be a directory named EWS-[USERNAME]@[EXCHANGE-SERVER] if it is there throw it away, and empty thrash.</li>
+<li>Start Mail</li>
+<li>Add Exchange-account using the Wizzard</li>
+<li>Only move tiny batches of e-mail between accounts<br>Although tedious, it does work :)</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.edwardsmit.com/2010/11/24/apple-mail-app-exchange-sync-problems-and-solution/" data-id="cic5v6xg80029wg1o2qy3dgk7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-parallels-explorer-is-gone-parallels-mounter-is-my-new-friend" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/08/13/parallels-explorer-is-gone-parallels-mounter-is-my-new-friend/" class="article-date">
+  <time datetime="2010-08-13T14:04:36.000Z" itemprop="datePublished">13 08 2010</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/OSX/">OSX</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/08/13/parallels-explorer-is-gone-parallels-mounter-is-my-new-friend/">Parallels Explorer is gone, Parallels Mounter is the new kid</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>It’s a tool I rarely use, Parallels Explorer. It enables you to browse a Virtual Machine Disk from OSX without booting the whole Virtual Machine. Today I needed the tool, but I couldn’t find it anywhere. Tried Google and searching the Parallels Support Forums, but nowhere any explanation where the Parallels Explorer could be found. So I started a chat with Parallels Support, and it appears that Parallels Explorer was available in Parallels Desktop 4.0. In Parallels Desktop 5.0 it is replace by a tool called Parallels Mounter. You don’t start it directly from your Applications folder, but you can select it from the Open With… list after you’ve right-clicked the VM Harddisk in Finder.<br>As I couldn’t find this information myself via Google, I hope this post will help anybody in search for Paralells Explorer.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.edwardsmit.com/2010/08/13/parallels-explorer-is-gone-parallels-mounter-is-my-new-friend/" data-id="cic5v6xf2000wwg1ooeue4u0x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-citrix-sa-client-for-mac-osx" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/03/30/citrix-sa-client-for-mac-osx/" class="article-date">
+  <time datetime="2010-03-30T11:14:25.000Z" itemprop="datePublished">30 03 2010</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/OSX/">OSX</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/03/30/citrix-sa-client-for-mac-osx/">Citrix SA Client for Mac OSX</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Some time ago for a specific client I needed to connect to some protected infrastructure using some proprietary Citrix client. The firewall protecting the infrastructure only allowed access via VPN technology as implemented in the Citrix SA Client. At the time I couldn’t find a Mac OSX client, and the Administrator of the firewall protected environment also told me that no such software was available. So I ended up using parallels with a windows OS and running the client on that platform. Today I had some serious connection problems from windows to the aforementioned firewall, the connection would drop and reestablish every 15 seconds, not workable. I suspect there is something wrong with the parallels network driver within windows in combination with the Airport wireless network I’m using since a couple of days.<br>This let me to search for the Citrix SA Client once more, and guess what; <a href="http://www.citrix.com/site/SS/downloads/details.asp?downloadId=1857838&amp;productId=15005" target="_blank" rel="external">I found it</a>! Installed like a charm, and now Remote Desktop-ing to the servers from OSX. I hate it when I need specific software for setting up a VPN, but I love it when it works like a charm.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.edwardsmit.com/2010/03/30/citrix-sa-client-for-mac-osx/" data-id="cic5v6xg1001zwg1od7wkp1fi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VPN/">VPN</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/Debugging/">Debugging</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net/Team-Development/">Team Development</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/Team-Development/Team-Foundation-Server/">Team Foundation Server</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/BizTalk-2004/">BizTalk 2004</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/">Dev</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/OSX/">OSX</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/OSX/Ruby/">Ruby</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Digital-Life/">Digital Life</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FAST-ESP/">FAST ESP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tagged/">Tagged</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backup/">Backup</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bug/">Bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FAST/">FAST</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/">Microsoft</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby/">Ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snow-Leopard/">Snow Leopard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Time-Machine/">Time Machine</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/">VPN</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Backup/" style="font-size: 10px;">Backup</a> <a href="/tags/Bug/" style="font-size: 10px;">Bug</a> <a href="/tags/FAST/" style="font-size: 10px;">FAST</a> <a href="/tags/Mac/" style="font-size: 20px;">Mac</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/Snow-Leopard/" style="font-size: 10px;">Snow Leopard</a> <a href="/tags/Time-Machine/" style="font-size: 10px;">Time Machine</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">April 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">August 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">May 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/01/">January 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/09/">September 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">August 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/07/">July 2006</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2011/02/03/fast-esp-apiqueue-too-full-for-operation-of-size/">FAST ESP Apiqueue too full for operation of size</a>
+          </li>
+        
+          <li>
+            <a href="/2010/11/24/apple-mail-app-exchange-sync-problems-and-solution/">Apple Mail.app Exchange sync problems and solution</a>
+          </li>
+        
+          <li>
+            <a href="/2010/11/10/free-microsoft-fast-search-server-2010-for-sharepoint/">Free Microsoft FAST Search Server 2010 for SharePoint Training</a>
+          </li>
+        
+          <li>
+            <a href="/2010/08/13/parallels-explorer-is-gone-parallels-mounter-is-my-new-friend/">Parallels Explorer is gone, Parallels Mounter is the new kid</a>
+          </li>
+        
+          <li>
+            <a href="/2010/07/01/how-long-until-my-windows-password-expires/">How long until my Windows password expires?</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Edward Smit<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

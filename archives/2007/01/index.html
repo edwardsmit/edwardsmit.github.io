@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2007/1 | Blognote</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blognote">
+<meta property="og:url" content="http://blog.edwardsmit.com/archives/2007/01/index.html">
+<meta property="og:site_name" content="Blognote">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Blognote">
+<meta name="twitter:description">
+  
+    <link rel="alternative" href="/atom.xml" title="Blognote" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blognote</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Edward&amp;#039;s Unicode Sequences</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.edwardsmit.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-i-want-to-store-more-items" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2007/01/24/i-want-to-store-more-items/" class="article-date">
+  <time datetime="2007-01-24T14:31:21.000Z" itemprop="datePublished">24 01 2007</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Digital-Life/">Digital Life</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2007/01/24/i-want-to-store-more-items/">I want to store more items</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I’m running Vista and Office 2007. Previously I used <a href="http://www.newsgator.com" target="_blank" rel="external">Newsgator</a> for all my blogreading, but the new Windows RSS platform in combination with Outlook 2007 brings me the exact same functionality.</p>
+<p>It appears that the feeds have a limit for the number of items they can contain, this limit is by default set at 200. That’s not enough for me. You can set the limit by modifying the feed properties, but that would mean I needed to right-click al the feeds (100+) so I needed another way to modify all the feeds. Of course the Windows RSS Platform has an API, so some programming will come to the rescue. I originally thought that this would be an excellent opportunity to delve into Powershell, but it appears that Powershell is not yet available for Vista at this moment :-(</p>
+<p>So some JavaScript to the rescue. Run it using cscript, and all feeds will be modified.</p>
+<p><pre class="brush: javascript">  var feedsManager, rootFolder;<br>  feedsManager = new ActiveXObject(“Microsoft.FeedsManager”);<br>  rootFolder = feedsManager.RootFolder;<br>  iterateFolders(rootFolder);</pre></p>
+<p>  function iterateFolders(folder)<br>  {<br>    if (null == folder) return;<br>    var currentFolder;<br>    var e = new Enumerator(folder.Subfolders);<br>    for(;!e.atEnd();e.moveNext())<br>    {<br>      currentFolder = e.item();<br>      iterateFolders(currentFolder);<br>    }<br>    iterateFeeds(folder);<br>  }</p>
+<p>  function iterateFeeds(feedFolder)<br>  {<br>    if (null == feedFolder) return;<br>    var feed;<br>    var e = new Enumerator(feedFolder.Feeds);<br>    for(;!e.atEnd();e.moveNext())<br>    {<br>      feed=e.item();<br>      //feed.MaxItemCount = feedsManager.ItemCountLimit;<br>      feed.MaxItemCount = 0;<br>      WScript.Echo(feed.Name + “: “ + feed.MaxItemCount);<br>    }<br>  }<br>Update: I previously set the MaxItemcount to the ItemCountLimit (2500), set it to 0 to set it to unlimited</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.edwardsmit.com/2007/01/24/i-want-to-store-more-items/" data-id="cic5v6xfi001cwg1o3rnz7c59" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-tagged-5-things-you-didnt-know-about-me" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2007/01/08/tagged-5-things-you-didnt-know-about-me/" class="article-date">
+  <time datetime="2007-01-08T08:31:50.000Z" itemprop="datePublished">08 01 2007</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tagged/">Tagged</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2007/01/08/tagged-5-things-you-didnt-know-about-me/">Tagged - 5 Things you didn&#39;t know about me.</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>As I have always believed in the <a href="http://en.wikipedia.org/wiki/Six_degrees_of_separation" target="_blank" rel="external">Six Degrees Of Separation</a>, I’m not surprised this whole tagging game eventually ended up here. Thanks to <a href="http://bloggingabout.net/blogs/carlo/archive/2007/01/04/an-accident-waiting-to-happen.aspx" target="_blank" rel="external">Carlo</a> for confirming my believes.<br>So here are&nbsp;the 5 things you maybe didn’t know about me.</p>
+<p>5) I started programming on the ZX81. I had the 16Kb expansion pack and a lot of my time went into typing in programs from the various magazines (there were a lot of those back then). Later I started writing my own programs. As I’m Dutch and only had very minimal education in English when I was 12, I learned myself to read English in the progress.</p>
+<p>4) I have a diverse musical taste. I love to listen to Disco Classics, House, Trance, Rock and Progressive Rock. You can run into me at a Steve Vai concert one week and at Dance Valley the other. Some other concerts (in no particular order) you can have seen me would be from Iron Maiden, Deep Purple, Audioslave, Toto, Simon Phillips, David Lee Roth, Joe Satriani, Dream Theater, Van Halen, Bon Jovi, Whitesnake, Tony Macalpine, Metallica. Some Dance Spots where you can have met me include Trance Energy, Innercity, Tiesto in Concert, Mysteryland, the LoveParade, Parkzicht and de Barocci. </p>
+<p>3) I play electric guitar in a band. My guitar had been stolen and after I had spotted it for sale on the internet, hours before I went on vacation to Spain, my friends did enough detective work to have the police get my guitar back, without a scratch.</p>
+<p>2) In 1998 I presented a session on TechEd Europe on COM+ Without a doubt it is the largest crowd I have ever presented to.</p>
+<p>1) My dad is Indonesian so I’m a half-blood. I guess that’s the reason why I tan so easily and dark, why I prefer heat over cold, why I eat rice at least once a week (and don’t mind to eat it for breakfast, lunch and diner 7 days-a-week) and love spicey food.</p>
+<p>Let’s tag 5 more people who aren’t tagged yet, here you go <a href="http://blogs.infosupport.com/marcelv/" target="_blank" rel="external">Marcel</a>, <a href="http://martijnh.blogspot.com/" target="_blank" rel="external">Martijn</a>, <a href="http://bloggingabout.net/blogs/Ramon/" target="_blank" rel="external">Ramon</a>, <a href="http://bloggingabout.net/blogs/waseem/default.aspx" target="_blank" rel="external">Waseem</a> and <a href="http://www.mwolf.net/" target="_blank" rel="external">Martin</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.edwardsmit.com/2007/01/08/tagged-5-things-you-didnt-know-about-me/" data-id="cic5v6xef0005wg1oxg5u8o6j" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/Debugging/">Debugging</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net/Team-Development/">Team Development</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/Team-Development/Team-Foundation-Server/">Team Foundation Server</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/BizTalk-2004/">BizTalk 2004</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/">Dev</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/OSX/">OSX</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Dev/OSX/Ruby/">Ruby</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Digital-Life/">Digital Life</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FAST-ESP/">FAST ESP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OSX/">OSX</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tagged/">Tagged</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backup/">Backup</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bug/">Bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FAST/">FAST</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft/">Microsoft</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ruby/">Ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snow-Leopard/">Snow Leopard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Time-Machine/">Time Machine</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/">VPN</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Backup/" style="font-size: 10px;">Backup</a> <a href="/tags/Bug/" style="font-size: 10px;">Bug</a> <a href="/tags/FAST/" style="font-size: 10px;">FAST</a> <a href="/tags/Mac/" style="font-size: 20px;">Mac</a> <a href="/tags/Microsoft/" style="font-size: 10px;">Microsoft</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/Snow-Leopard/" style="font-size: 10px;">Snow Leopard</a> <a href="/tags/Time-Machine/" style="font-size: 10px;">Time Machine</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">April 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">August 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">May 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/01/">January 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/09/">September 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">August 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/07/">July 2006</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2011/02/03/fast-esp-apiqueue-too-full-for-operation-of-size/">FAST ESP Apiqueue too full for operation of size</a>
+          </li>
+        
+          <li>
+            <a href="/2010/11/24/apple-mail-app-exchange-sync-problems-and-solution/">Apple Mail.app Exchange sync problems and solution</a>
+          </li>
+        
+          <li>
+            <a href="/2010/11/10/free-microsoft-fast-search-server-2010-for-sharepoint/">Free Microsoft FAST Search Server 2010 for SharePoint Training</a>
+          </li>
+        
+          <li>
+            <a href="/2010/08/13/parallels-explorer-is-gone-parallels-mounter-is-my-new-friend/">Parallels Explorer is gone, Parallels Mounter is the new kid</a>
+          </li>
+        
+          <li>
+            <a href="/2010/07/01/how-long-until-my-windows-password-expires/">How long until my Windows password expires?</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Edward Smit<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
